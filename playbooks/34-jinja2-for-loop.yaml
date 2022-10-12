@@ -1,0 +1,22 @@
+- name: Play - generate SPECS report
+  hosts: localhost
+  vars:
+    app_pages:
+      - home
+      - login
+      - logout
+    app_users:
+      - name: ahmed
+        role: developer
+      - name: mouath
+        role: developer
+      - name: ali
+        role: ops
+      - name: omar
+        role: ops
+  tasks:
+    - name: Report is generated
+      ansible.builtin.template:
+        src: 34-template-with-loop.conf
+        dest: /tmp/app-report.conf
+        mode: u=rwX,g=srX,o=rX

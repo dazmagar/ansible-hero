@@ -1,0 +1,8 @@
+- name: Play - generate SPECS report
+  hosts: localhost
+  tasks:
+  - name: Report is generated
+    ansible.builtin.template:
+      src: 33-specs.conf
+      dest: /tmp/specs.conf
+      mode: u=rwX,g=srX,o=rX

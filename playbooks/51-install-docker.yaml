@@ -1,0 +1,7 @@
+- name: Play - install docker by role
+  hosts: dev
+  become: true
+  vars:
+    docker_users: ["{{ ansible_ssh_user }}"]
+  roles:
+    - role: geerlingguy.docker

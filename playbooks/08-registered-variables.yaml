@@ -1,0 +1,20 @@
+- name: Play - register variables
+  hosts: ec2
+  become: true
+  # gather_facts: false
+  vars_files:
+  - vars/vars.yaml
+  tasks:
+    - name: Webserver is installed
+      ansible.builtin.package:
+        name: "{{ webserver['type'] }}"
+        state: present
+      register: nginx_install_output
+    - name: Print in terminal
+      ansible.builtin.debug:
+        var: nginx_install_output
+    - name: Copy the output
+      ansible.builtin.copy:
+        content: "{{ nginx_install_output }}"
+        dest: /tmp/play-08-ouput
+        mode: u=rw,g=r,o=r

@@ -1,0 +1,22 @@
+- name: Play - file management
+  hosts: ec2
+  gather_facts: false
+  tasks:
+    - name: Hello file is copied
+      ansible.builtin.copy:
+        content: "Hello here"
+        dest: /tmp/hello.txt
+        mode: u=rw,g=r,o=r
+    - name: Hi file is copied
+      ansible.builtin.copy:
+        content: "Hi here"
+        dest: /tmp/hi.txt
+        mode: u=rw,g=r,o=r
+    - name: Archive hh is created
+      community.general.archive:
+        path:
+          - /tmp/hello.txt
+          - /tmp/hi.txt
+        format: zip
+        dest: /tmp/hh.zip
+        mode: u=rw,g=r,o=r

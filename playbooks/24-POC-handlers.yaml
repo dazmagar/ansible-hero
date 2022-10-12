@@ -1,0 +1,18 @@
+- name: Play - illustrates the Slide of handlers
+  hosts: somehost
+  tasks:
+  - name: T1
+    module-a:
+      attr1: val1
+  - name: T2
+    module-b:
+      attr1: val1
+    notify: T3
+    # run T3 only if T2 CHANGED 
+  - name: T4
+    module-d:
+      attr1: val1
+  handlers:
+  - name: T3
+    module-c:
+      attr1: val1

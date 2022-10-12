@@ -1,0 +1,8 @@
+- name: Play - encrypted vars
+  hosts: localhost
+  vars_files:
+  - vars/40-users.yaml
+  tasks:
+  - name: Encrypted variable is printed
+    ansible.builtin.debug:
+      var: my_users

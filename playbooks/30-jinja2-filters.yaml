@@ -1,0 +1,36 @@
+# https://jinja.palletsprojects.com/en/2.11.x/templates/#builtin-filters
+- name: Play - jinja2 filters
+  hosts: localhost
+  gather_facts: false
+  vars:
+    git_username: atoumi
+    git_password: My$1mpL#P@$$
+    git_repos: ["eks-course", "ansible-course", "react-csv"]
+    course_lectures_nb: [6, 6, 10, 8, 9]
+  tasks:
+    - name: Jinja filter - capitalize
+      ansible.builtin.debug:
+        msg:
+          - "original : {{ git_username }}"
+          - "with filter: {{ git_username | capitalize }}"
+      # require: pip3 install passlib
+    - name: Jinja filter - password_hash('sha512')
+      ansible.builtin.debug:
+        msg:
+          - "original : {{ git_password }}"
+          - "with filter: {{ git_password | password_hash('sha512') }}"
+    - name: Jinja filter - length - nb of repos
+      ansible.builtin.debug:
+        msg:
+          - "original : {{ git_repos }}"
+          - "with filter: {{ git_repos | length }}"
+    - name: Jinja filter - sum - total nb of lectures
+      ansible.builtin.debug:
+        msg:
+          - "original : {{ course_lectures_nb }}"
+          - "with filter: {{ course_lectures_nb | sum }}"
+    - name: Jinja filter - max - max nb of lectures in a section
+      ansible.builtin.debug:
+        msg:
+          - "original : {{ course_lectures_nb }}"
+          - "with filter: {{ course_lectures_nb | max }}"

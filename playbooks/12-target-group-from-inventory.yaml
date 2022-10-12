@@ -1,0 +1,8 @@
+- name: Play - target group from large inventory
+  hosts: dev
+  become: true
+  tasks:
+  - name: Nginx is installed
+    ansible.builtin.package:
+      name: nginx
+      state: present

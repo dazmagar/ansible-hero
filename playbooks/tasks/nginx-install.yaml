@@ -1,0 +1,13 @@
+- name: Webserver is installed
+  ansible.builtin.package:
+    name: "{{ webserver['type'] }}"
+    state: present
+- name: Webserver is running
+  ansible.builtin.service:
+    name: "{{ webserver['type'] }}"
+    state: started
+- name: Webserver root directory exists
+  ansible.builtin.file:
+    path: "{{ webserver['root_dir'] }}"
+    state: directory
+    mode: u=rwX,g=srX,o=rX

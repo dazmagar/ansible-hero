@@ -1,0 +1,13 @@
+- name: Play - deploy static website
+  hosts: dev
+  become: true
+  gather_facts: false
+  vars_files:
+  - vars/vars.yaml
+  tasks:
+  - name: Import nginx install tasks
+    import_tasks: tasks/nginx-install.yaml
+  - name: Static website is deployed
+    ansible.builtin.uri:
+      url: https://raw.githubusercontent.com/abdennour/example-static-website/{{ git_branch }}/index.html
+      dest: "{{ webserver['root_dir'] }}"

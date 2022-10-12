@@ -1,0 +1,25 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+web_drivers/
+*.py[cod]
+.pytest_cache/
+
+# virtual env
+venv/*
+wfenv/*
+
+# .ssh
+.ssh/*
+
+# custom
+*.py
+_.yaml
+*assign*
+*.pem
+*.tmp
+
+roles/*
+!roles/.gitkeep
+
+collections/*
+!collections/.gitkeep

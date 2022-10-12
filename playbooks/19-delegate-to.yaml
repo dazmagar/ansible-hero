@@ -1,0 +1,9 @@
+- name: Play - show how to use delegate_to
+  hosts: dev
+  tasks:
+  - name: String is copied into a file
+    ansible.builtin.copy:
+      content: This is a message while targeting {{ inventory_hostname }}
+      dest: /tmp/message.txt
+      mode: u=rwX,g=srX,o=rX
+    delegate_to: localhost

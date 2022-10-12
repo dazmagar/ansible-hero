@@ -1,0 +1,16 @@
+- name: Play - discover magic variables
+  hosts: dev,prod
+  gather_facts: false
+  tasks:
+  - name: Print inventory_hostname
+    ansible.builtin.debug:
+      var: inventory_hostname
+  - name: Print hostvars
+    ansible.builtin.debug:
+      var: hostvars
+  - name: Print group_names
+    ansible.builtin.debug:
+      var: group_names
+  - name: Print groups
+    ansible.builtin.debug:
+      var: groups

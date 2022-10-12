@@ -1,0 +1,29 @@
+- name: Play - deploy static website
+  hosts: ec2
+  become: true
+  gather_facts: false
+  vars_files:
+  - vars/vars.yaml
+  vars:
+    git_branch: ansible-course
+  tasks:
+    - name: Debug
+      ansible.builtin.debug:
+        msg: "The value of webserver is {{ webserver['type'] }}"
+    - name: Webserver is installed
+      ansible.builtin.package:
+        name: "{{ webserver['type'] }}"
+        state: present
+    - name: Webserver is running
+      ansible.builtin.service:
+        name: "{{ webserver['type'] }}"
+        state: started
+    - name: Webserver root directory exists
+      ansible.builtin.file:
+        path: "{{ webserver['root_dir'] }}"
+        state: directory
+        mode: u=rwX,g=srX,o=rX
+    - name: Static website is deployed
+      ansible.builtin.uri:
+        url: https://raw.githubusercontent.com/abdennour/example-static-website/{{ git_branch }}/index.html
+        dest: "{{ webserver['root_dir'] }}"

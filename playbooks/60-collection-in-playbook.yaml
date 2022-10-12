@@ -1,0 +1,11 @@
+- name: Play - usage collections
+  hosts: worker1
+  collections:
+  - newswangerd.collection_demo
+  tasks:
+  - name: Module usage from collection
+    real_facts:
+      name: Abdennour
+  - name: Role usage from collection
+    import_role:
+      name: factoid

@@ -1,0 +1,7 @@
+users:
+  - name: ahmed
+    group: developers
+    uid: 4000
+  - name: maga
+    group: developers
+    uid: 5000

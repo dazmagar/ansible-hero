@@ -1,0 +1,17 @@
+# ssh -i ./.ssh/ansibleuser ansibleuser@3.87.56.196
+ec2
+# ssh -i ./.ssh/ansibleuser ansibleuser@141.144.236.46
+oracle
+# vagrant
+worker1
+
+[dev]
+ec2
+worker1
+
+[prod]
+oracle
+
+[prod:vars]
+ansible_ssh_user=ansibleuser
+ansible_private_key_file=./.ssh/ansibleuser

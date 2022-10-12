@@ -1,0 +1,11 @@
+- name: Play - jenkins install by roles
+  hosts: dev
+  become: true
+  vars:
+ #   jenkins_hostname: jenkins.example.com
+    java_packages:
+      - openjdk-8-jdk
+      - openjdk-11-jdk-headless
+  roles:
+    - role: geerlingguy.java
+    - role: geerlingguy.jenkins
